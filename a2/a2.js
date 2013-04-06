@@ -25,7 +25,7 @@ $(function(){
   }
 
   var addText = function () {
-    graph.selectAll("text")
+    graph.selectAll("text.onBars")
           .data(rows).enter().append("svg:text")
           .attr("x", function(d) { return xscale(d.L1) + barWidth; })
           .attr("y", function(d) { return height - yscale(d.L2); })
@@ -46,7 +46,7 @@ $(function(){
           .attr("width", barWidth)
           .attr("fill", "#2d578b")
           .on("mouseover", function () { d3.select(this).transition().attr("fill", "#cc0812"); })
-          .on("mouseout", function () { d3.select(this).transition().attr("fill", "#2d578b"); });;
+          .on("mouseout", function () { d3.select(this).transition().attr("fill", "#2d578b"); });
 
     addText();
   }
@@ -140,7 +140,7 @@ $(function(){
                    .attr("fill", "#cecece")
                    .on("click", toggleGraph)
 
-    button.append("text")
+    button.append("text.onButton")
           .attr("x", "10")
           .attr("y", "10")
           .attr("width", "150")
