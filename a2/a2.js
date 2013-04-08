@@ -178,8 +178,35 @@ $(function(){
     drawGraph();
   }
 
+  var parseData = function (path, success) {
+    var dataStr = $.get(path, function(data) {
+      var strLines = data.split('\n');
+      var colNames = strLines.splice(0,1)[0].split(',');
+      var result = []
+
+      for (var i in strLines) {
+        ds = strLines[i].split(',');
+        var obj = {}
+        /*
+          for (var j in colNames) {
+          obj[colNames[j]] = ds[j];
+        }
+        */
+        obj.L1 = ds[0];
+        obj.L2 = ds[1];
+        result.push(obj);
+        for (name in obj)
+          console.log(name);
+      }
+
+      success(result);
+    });
+
+  }
+
   //d3.select("body").style("background-color", "black");
-  d3.csv("viz.csv", init);
+  parseData("viz.csv", init);
+  //d3.csv("viz.csv", init);
 });
 
 
